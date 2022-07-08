@@ -15,7 +15,7 @@ function App() {
     console.log('from client: ' + query)
     fetch('/getimg')
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => console.log(data.message))
   }
 
   return (
