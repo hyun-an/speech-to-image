@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import './App.css'
 
@@ -17,10 +16,13 @@ function App() {
     console.log('from client: ' + query)
     fetch('/getimg', {
       method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
       body: JSON.stringify({ queryText: query })
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => setResult(data.output))
   }
 
   return (

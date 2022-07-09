@@ -18,9 +18,10 @@ const getImage = async query => {
     'https://api.replicate.com/v1/predictions',
     {
       version:
-        '5c7d5dc6dd8bf75c1acaa8565735e7986bc5b66206b55cca93cb72c9bf15ccaa',
+        '52aa777b11880357b272aa7c793080f2626cafe44a03877e3017452528a920c3',
       input: {
-        text: `${query}`
+        text: `${query}`,
+        grid_size: 1
       }
     },
     {
@@ -31,8 +32,11 @@ const getImage = async query => {
     }
   )
   let resp = response.data
-  let linkId = resp.id
-  setTimeout(() => {}, 1500)
+  console.log('id from getImage: ' + resp.id)
+  return resp.id
+}
+
+const getImageLink = async linkId => {
   const result = await axios.get(
     `https://api.replicate.com/v1/predictions/${linkId}`,
     {
@@ -41,15 +45,37 @@ const getImage = async query => {
       }
     }
   )
-  let resultOutput = result.data
-  console.log(resultOutput)
-  return resultOutput.output
+  console.log('from getimageLink: ' + result.data.output)
+  console.log(result.data.output)
+  return result.data.output
 }
 
-app.post('/getimg', async (req, res) => {
-  console.log(req.body)
-
-  res.json({ output: 'no work' })
+app.post('/getimg', (req, response) => {
+  let reqText = req.body.queryText
+  let outputLink = []
+  getImage(reqText).then(res => {
+    setTimeout(async () => {
+      outputLink = await getImageLink(res)
+      if (outputLink !== null && outputLink.length === 8) {
+        console.log('from timeout 1: ')
+        console.log(outputLink)
+        response.json({ output: outputLink })
+      } else if (outputLink.length !== 8) {
+        setTimeout(async () => {
+          outputLink = await getImageLink(res)
+          console.log('from timeout else if: ')
+          console.log(outputLink)
+          response.json({ output: outputLink })
+        }, 2500)
+      } else
+        setTimeout(async () => {
+          outputLink = await getImageLink(res)
+          console.log('from timeout 2: ')
+          console.log(outputLink)
+          response.json({ output: outputLink })
+        }, 10000)
+    }, 15500)
+  })
 })
 
 app.listen(PORT, () => {
