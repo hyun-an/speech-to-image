@@ -5,20 +5,21 @@ const cors = require('cors')
 const PORT = process.env.PORT || 3001
 
 const app = express()
-app.use(cors())
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+app.use(express.json())
 
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from server!' })
 })
 
-const getImage = async () => {
+const getImage = async query => {
   const response = await axios.post(
     'https://api.replicate.com/v1/predictions',
     {
       version:
         '5c7d5dc6dd8bf75c1acaa8565735e7986bc5b66206b55cca93cb72c9bf15ccaa',
       input: {
-        text: 'Alice'
+        text: `${query}`
       }
     },
     {
@@ -30,6 +31,7 @@ const getImage = async () => {
   )
   let resp = response.data
   let linkId = resp.id
+  setTimeout(() => {}, 1500)
   const result = await axios.get(
     `https://api.replicate.com/v1/predictions/${linkId}`,
     {
@@ -39,11 +41,14 @@ const getImage = async () => {
     }
   )
   let resultOutput = result.data
-  console.log(resultOutput.output)
+  console.log(resultOutput)
+  return resultOutput.output
 }
 
-app.get('/getimg', (req, res) => {
-  getImage()
+app.post('/getimg', async (req, res) => {
+  console.log(req.body)
+
+  res.json({ output: 'no work' })
 })
 
 app.listen(PORT, () => {
