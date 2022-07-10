@@ -113,7 +113,7 @@ function App() {
         setText1('Sentences not completely made')
     }
     queryObj = { queryText: stringQuery }
-    //getImage(queryObj, story)
+    getImage(queryObj, story)
   }
 
   const getValue = num => {
