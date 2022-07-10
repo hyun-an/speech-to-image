@@ -86,22 +86,34 @@ function App() {
     }
     switch (story) {
       case 1:
+        setImageLink1(
+          'https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif'
+        )
         setText1(stringQuery)
         break
       case 2:
+        setImageLink2(
+          'https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif'
+        )
         setText2(stringQuery)
         break
       case 3:
+        setImageLink3(
+          'https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif'
+        )
         setText3(stringQuery)
         break
       case 4:
+        setImageLink4(
+          'https://i.pinimg.com/originals/3d/6a/a9/3d6aa9082f3c9e285df9970dc7b762ac.gif'
+        )
         setText4(stringQuery)
         break
       default:
         setText1('Sentences not completely made')
     }
     queryObj = { queryText: stringQuery }
-    getImage(queryObj, story)
+    //getImage(queryObj, story)
   }
 
   const getValue = num => {
