@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import { Microphone, CaretDoubleRight } from 'phosphor-react'
+import { Microphone, CaretDoubleDown } from 'phosphor-react'
 import SpeechRecognition, {
   useSpeechRecognition
 } from 'react-speech-recognition'
@@ -158,22 +158,23 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10 items-center space-x-10'>
-              <button
-                className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
-                onClick={() => {
-                  handleClick(1, 1)
-                  return false
-                }}
-              >
-                Generate
-              </button>
-              <a href='#2'>
-                <CaretDoubleRight
-                  className='hover:bg-green-200 rounded-xl p-1'
-                  size='44'
-                />
-              </a>
+            <div>
+              <div className='flex justify-center pt-10'>
+                <button
+                  className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
+                  onClick={() => handleClick(1, 1)}
+                >
+                  Generate
+                </button>
+              </div>
+              <div className='flex justify-center mt-8'>
+                <a href='#2'>
+                  <CaretDoubleDown
+                    className='hover:bg-green-200 rounded-xl p-1'
+                    size='44'
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -204,19 +205,23 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10 items-center space-x-10'>
-              <button
-                className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
-                onClick={() => handleClick(2, 2)}
-              >
-                Generate
-              </button>
-              <a href='#3'>
-                <CaretDoubleRight
-                  className='hover:bg-green-200 rounded-xl p-1'
-                  size='44'
-                />
-              </a>
+            <div>
+              <div className='flex justify-center pt-10'>
+                <button
+                  className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
+                  onClick={() => handleClick(2, 2)}
+                >
+                  Generate
+                </button>
+              </div>
+              <div className='flex justify-center mt-8'>
+                <a href='#3'>
+                  <CaretDoubleDown
+                    className='hover:bg-green-200 rounded-xl p-1'
+                    size='44'
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -241,19 +246,23 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10 items-center space-x-10'>
-              <button
-                className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
-                onClick={() => handleClick(4, 3)}
-              >
-                Generate
-              </button>
-              <a href='#4'>
-                <CaretDoubleRight
-                  className='hover:bg-green-200 rounded-xl p-1'
-                  size='44'
-                />
-              </a>
+            <div>
+              <div className='flex justify-center pt-10'>
+                <button
+                  className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
+                  onClick={() => handleClick(4, 3)}
+                >
+                  Generate
+                </button>
+              </div>
+              <div className='flex justify-center mt-8'>
+                <a href='#4'>
+                  <CaretDoubleDown
+                    className='hover:bg-green-200 rounded-xl p-1'
+                    size='44'
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -280,22 +289,23 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10 items-center space-x-10'>
-              <button
-                className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
-                onClick={() => {
-                  handleClick(5, 4)
-                  return false
-                }}
-              >
-                Generate
-              </button>
-              <a href='#result'>
-                <CaretDoubleRight
-                  className='hover:bg-green-200 rounded-xl p-1'
-                  size='44'
-                />
-              </a>
+            <div>
+              <div className='flex justify-center pt-10'>
+                <button
+                  className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
+                  onClick={() => handleClick(5, 4)}
+                >
+                  Generate
+                </button>
+              </div>
+              <div className='flex justify-center mt-8'>
+                <a href='#result'>
+                  <CaretDoubleDown
+                    className='hover:bg-green-200 rounded-xl p-1'
+                    size='44'
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
