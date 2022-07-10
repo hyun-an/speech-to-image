@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from server!' })
+  res.json({ message: 'API is working properly' })
 })
 
 const getImage = async query => {
@@ -32,7 +32,6 @@ const getImage = async query => {
     }
   )
   let resp = response.data
-  console.log('id from getImage: ' + resp.id)
   return resp.id
 }
 
@@ -45,34 +44,29 @@ const getImageLink = async linkId => {
       }
     }
   )
-  console.log('from getimageLink: ' + result.data.output)
-  console.log(result.data.output)
+
   return result.data.output
 }
 
 app.post('/getimg', (req, response) => {
-  let reqText = req.body.queryText
+  let reqText = req.body.queryText.queryText
   let outputLink = []
   getImage(reqText).then(res => {
     setTimeout(async () => {
       outputLink = await getImageLink(res)
       if (outputLink !== null && outputLink.length === 8) {
-        console.log('from timeout 1: ')
-        console.log(outputLink)
-        response.json({ output: outputLink })
-      } else if (outputLink.length !== 8) {
+        response.json({ output: outputLink[7] })
+      } else if (outputLink?.length !== 8) {
         setTimeout(async () => {
           outputLink = await getImageLink(res)
-          console.log('from timeout else if: ')
-          console.log(outputLink)
-          response.json({ output: outputLink })
-        }, 2500)
+
+          if (outputLink?.length === 8) response.json({ output: outputLink[7] })
+        }, 3000)
       } else
         setTimeout(async () => {
           outputLink = await getImageLink(res)
-          console.log('from timeout 2: ')
-          console.log(outputLink)
-          response.json({ output: outputLink })
+
+          response.json({ output: outputLink[7] })
         }, 10000)
     }, 15500)
   })
