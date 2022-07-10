@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const axios = require('axios')
 const cors = require('cors')
 
@@ -8,6 +9,7 @@ const app = express()
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.resolve(__dirname, '../client/build')))
 
 app.get('/api', (req, res) => {
   res.json({ message: 'API is working properly' })
@@ -32,6 +34,7 @@ const getImage = async query => {
     }
   )
   let resp = response.data
+  console.log(resp.id)
   return resp.id
 }
 
@@ -55,17 +58,18 @@ app.post('/getimg', (req, response) => {
     setTimeout(async () => {
       outputLink = await getImageLink(res)
       if (outputLink !== null && outputLink.length === 8) {
+        console.log(outputLink[7])
         response.json({ output: outputLink[7] })
       } else if (outputLink?.length !== 8) {
         setTimeout(async () => {
           outputLink = await getImageLink(res)
-
+          console.log(outputLink[7])
           if (outputLink?.length === 8) response.json({ output: outputLink[7] })
         }, 3000)
       } else
         setTimeout(async () => {
           outputLink = await getImageLink(res)
-
+          console.log(outputLink[7])
           response.json({ output: outputLink[7] })
         }, 10000)
     }, 15500)
@@ -74,4 +78,8 @@ app.post('/getimg', (req, response) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
 })

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import { Microphone, CaretDown } from 'phosphor-react'
+import { Microphone, CaretDoubleRight } from 'phosphor-react'
 import SpeechRecognition, {
   useSpeechRecognition
 } from 'react-speech-recognition'
@@ -118,6 +118,7 @@ function App() {
   const { transcript, listening } = useSpeechRecognition()
 
   const SpecialInp = ({ typeOfInput, n }) => {
+    const activeList = listening
     return (
       <span className='inline-block pl-3 pr-3'>
         <div className='flex items-center border-2 border-gray-600 p-1 leading-3 rounded-xl'>
@@ -127,10 +128,11 @@ function App() {
             id={`queryText${n}`}
             name='queryText'
             placeholder={typeOfInput}
+            defaultValue={activeList ? transcript : null}
           />
           <Microphone
             onClick={
-              listening
+              activeList
                 ? SpeechRecognition.stopListening
                 : SpeechRecognition.startListening
             }
@@ -143,9 +145,9 @@ function App() {
   return (
     <div>
       <Navbar apiStatus={status} />
-      <div id='1' className='grid grid-cols-2'>
+      <div id='left' className='grid grid-cols-2'>
         {/*First oanel*/}
-        <div className='2 h-screen flex items-center'>
+        <div className='pl-6 h-screen flex items-center'>
           <div>
             <div className='text-[28px]'>
               <p id='text_1' className='leading-[4rem] pl-3'>
@@ -156,7 +158,7 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10'>
+            <div className='flex justify-center pt-10 items-center space-x-10'>
               <button
                 className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
                 onClick={() => {
@@ -166,10 +168,19 @@ function App() {
               >
                 Generate
               </button>
+              <a href='#2'>
+                <CaretDoubleRight
+                  className='hover:bg-green-200 rounded-xl p-1'
+                  size='44'
+                />
+              </a>
             </div>
           </div>
         </div>
-        <div id='image side' className='flex justify-center items-center'>
+        <div
+          id='image side'
+          className='flex justify-center items-center space-x-10'
+        >
           <img
             className='rounded-lg'
             src={imageLink1}
@@ -180,7 +191,7 @@ function App() {
         </div>
 
         {/*Second oanel*/}
-        <div className='2 h-screen flex items-center'>
+        <div id='2' className='pl-6 h-screen flex items-center'>
           <div>
             <div className='text-[28px]'>
               <p id='text_2' className='leading-[4rem] pl-3'>
@@ -193,13 +204,19 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10'>
+            <div className='flex justify-center pt-10 items-center space-x-10'>
               <button
                 className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
                 onClick={() => handleClick(2, 2)}
               >
                 Generate
               </button>
+              <a href='#3'>
+                <CaretDoubleRight
+                  className='hover:bg-green-200 rounded-xl p-1'
+                  size='44'
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -214,7 +231,7 @@ function App() {
         </div>
 
         {/*Third panel*/}
-        <div className='2 h-screen flex items-center'>
+        <div id='3' className='pl-6 h-screen flex items-center'>
           <div>
             <div className='text-[28px]'>
               <p id='text_3' className='leading-[4rem] pl-3'>
@@ -224,13 +241,19 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10'>
+            <div className='flex justify-center pt-10 items-center space-x-10'>
               <button
                 className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
                 onClick={() => handleClick(4, 3)}
               >
                 Generate
               </button>
+              <a href='#4'>
+                <CaretDoubleRight
+                  className='hover:bg-green-200 rounded-xl p-1'
+                  size='44'
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -245,7 +268,7 @@ function App() {
         </div>
 
         {/*Fourth panel*/}
-        <div className='2 h-screen flex items-center'>
+        <div id='4' className='pl-6 h-screen flex items-center'>
           <div>
             <div className='text-[28px]'>
               <p id='text_4' className='leading-[4rem] pl-3'>
@@ -257,7 +280,7 @@ function App() {
                 {/*This is where a sentence will be ended*/}.
               </p>
             </div>
-            <div className='flex justify-center pt-10'>
+            <div className='flex justify-center pt-10 items-center space-x-10'>
               <button
                 className='text-[28px] pl-1 pr-1 hover:bg-green-200 border-2 rounded-lg border-gray-700'
                 onClick={() => {
@@ -267,6 +290,12 @@ function App() {
               >
                 Generate
               </button>
+              <a href='#result'>
+                <CaretDoubleRight
+                  className='hover:bg-green-200 rounded-xl p-1'
+                  size='44'
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -282,7 +311,7 @@ function App() {
       </div>
       <a href='#result' className='flex justify-center'>
         <button
-          className='text-4xl rounded-xl hover:border-[4px] border-white bg-gradient-to-r p-2 from-[#7928ca] to-[#ff0080] transition-all duration-300 hover:from-[#ff0080] hover:to-[#5451ff]'
+          className='text-4xl rounded-xl hover:border-[4px] border-white bg-gradient-to-r p-2 from-[#7928ca] to-[#ff0080] transition-all duration-300 hover:from-[#ff0080] hover:to-[#545ff]'
           onClick={handleStorifyButton}
         >
           Storify!
