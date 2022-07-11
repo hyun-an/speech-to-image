@@ -57,7 +57,7 @@ app.post('/getimg', (req, response) => {
   getImage(reqText).then(res => {
     setTimeout(async () => {
       outputLink = await getImageLink(res)
-      if (outputLink !== null && outputLink.length === 8) {
+      if (outputLink !== null && outputLink?.length === 8) {
         console.log(outputLink[7])
         response.json({ output: outputLink[7] })
       } else if (outputLink?.length !== 8) {
