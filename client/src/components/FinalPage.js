@@ -1,4 +1,4 @@
-const FinalPage = ({ listOfLinks, listOfText, wordsToBold }) => {
+const FinalPage = ({ listOfLinks, listOfText }) => {
   console.log('from finalpage links' + listOfLinks)
   console.log('from finalpage text' + listOfText)
   return (
