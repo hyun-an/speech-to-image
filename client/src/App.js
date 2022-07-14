@@ -31,6 +31,7 @@ function App() {
 
   const [listOfLinks, setListOfLinks] = useState([''])
   const [listOfText, setListOfText] = useState([''])
+  const [wordsToBold, setWordsToBold] = useState([''])
 
   useEffect(() => {
     fetch('/api')
@@ -79,7 +80,8 @@ function App() {
     let count = (stringQuery.match(/\n/g) || []).length
     if (stringQuery !== '') {
       for (let i = 0; i < count; i++) {
-        stringQuery = stringQuery.replace('\n', ' ' + numberQuery + ' ')
+        stringQuery = stringQuery.replace('\n', ' ' + numberQuery.bold() + ' ')
+        setWordsToBold(...wordsToBold, numberQuery)
         curN++
         numberQuery = getValue(curN)
       }
@@ -345,6 +347,7 @@ function App() {
           id='result'
           listOfLinks={listOfLinks}
           listOfText={listOfText}
+          wordsToBold={wordsToBold}
         />
       ) : undefined}
       <Footer />
