@@ -79,7 +79,7 @@ function App() {
     let count = (stringQuery.match(/\n/g) || []).length
     if (stringQuery !== '') {
       for (let i = 0; i < count; i++) {
-        stringQuery = stringQuery.replace('\n', ' ' + numberQuery.bold() + ' ')
+        stringQuery = stringQuery.replace('\n', ' ' + numberQuery + ' ')
         curN++
         numberQuery = getValue(curN)
       }
